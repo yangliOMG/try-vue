@@ -39,19 +39,44 @@
                 </tbody>
             </table>
         </div>
-        <TableCell :elements="[
-                {name:'我的店铺',href:'',icon:'shop'},
-                {name:'邀请开店',href:'',icon:'manplus'},
+        <TableCell padding="10" :elements="[
+                {name:'我的店铺',href:'',icon:'shop'},{name:'邀请开店',href:'',icon:'manplus'},
         ]"></TableCell>
-        <TableCell :elements="[
-                {name:'分销团队',href:'',icon:'mangroup'},
-                {name:'分销订单',href:'',icon:'order'},
-                {name:'分销业绩',href:'',icon:'chart'},
+
+        <div class="areaRow">团队管理</div>
+        <TableCell arrangeMode="vertical" :elements="[
+                {name:'分销团队',href:'',icon:'mangroup'},{name:'分销订单',href:'',icon:'order'},{name:'分销业绩',href:'',icon:'chart'},
         ]"></TableCell>
-        <TableCell :elements="[
-                {name:'购物车',href:'',icon:'shopcart'},
-                {name:'我的社区',href:'',icon:'community'},
-        ]"></TableCell>
+
+        <div class="areaRow">个人管理</div>
+        <div style="background: #fff;padding:0 15px">
+            <TableCell :elements="[
+                    {name:'购物车',href:'',icon:'shopcart'},{name:'我的社区',href:'',icon:'community'},
+            ]"></TableCell>
+            <TableCell 
+                style="border-top:1px solid #eee;border-bottom:1px solid #eee;"
+                :elements="[
+                    {name:'我的收藏',href:'',icon:'care'},{name:'浏览记录',href:'',icon:'history'},
+            ]"></TableCell>
+            <TableCell :elements="[
+                    {name:'我的订单',href:'',icon:'myorder'},{name:'专属客服',href:'',icon:'cusService'},
+            ]"></TableCell>
+        </div>
+
+        <div class="areaRow">我的资产</div>
+        <div style="background: #fff;padding:0 15px">
+            <TableCell rowMode="twice" :elements="[
+                    {name:'优惠券',href:'',icon:'coupon',info:'0张优惠券'},{name:'红包',href:'',icon:'coupon',info:'0个待领取'},
+            ]"></TableCell>
+            <TableCell rowMode="twice" 
+                style="border-top:1px solid #eee;border-bottom:1px solid #eee;"
+                :elements="[
+                    {name:'金币',href:'',icon:'coin',info:'0金币'},{name:'店主邀请码',href:'',icon:'coupon',info:'3张邀请码'},
+            ]"></TableCell>
+            <TableCell rowMode="twice" :elements="[
+                    {name:'积分',href:'',icon:'point',info:'0积分'},{}
+            ]"></TableCell>
+        </div>
 
         <Tabbar> </Tabbar>
     </div>
@@ -108,5 +133,9 @@ export default {
             box-shadow: 2px 2px 4px #888888;
         }
     }
+}
+.areaRow{
+    padding: 10px 12px;background: #f8f8f8;color: #b9b9b9;
+    &:before{background: red;padding-right: 5px;margin-right: 5px;content: '';}
 }
 </style>

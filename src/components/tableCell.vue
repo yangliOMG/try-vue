@@ -1,9 +1,12 @@
 <template>
     <van-row class="row">
         <van-col v-for="ele in elements" :key="ele.name" :span="24/elements.length" class="cell">
-            <a class="cliDiv" :href="ele.href">
-                <p><i :class="'icon icon-'+ele.icon+'-def'"></i></p>
-                <p>{{ele.name}}</p>
+            <a :class="rowMode+' cliDiv ' + arrangeMode" :href="ele.href" :style="'padding:'+padding+'px'">
+                <span><i :class="'icon icon-'+ele.icon+'-def'"></i></span>
+                <div class="ri">
+                    <span class="title">{{ele.name}}</span>
+                    <span class="c-qgrey">{{ele.info}}</span>
+                </div>
             </a>
         </van-col>
     </van-row>
@@ -18,7 +21,19 @@ export default {
     props: {
       elements: {
         type: Array
-      }
+      },
+      arrangeMode: {
+        type: String,
+        default: 'horizontal'
+      },
+      rowMode: {
+        type: String,
+        default: 'once'
+      },
+      padding: {
+        type: String,
+        default: '15'
+      },
     },
 
 }
@@ -49,10 +64,39 @@ export default {
                 width: 21px;
                 height: 21px;
                 display: inline-block;
-                margin:0 10px -4px 0;
                 background-size: contain;
                 background-position: 50% 20%;
                 background-repeat: no-repeat;
+            }
+            .title{
+                min-width: 56px;
+                display: inline-block;
+            }
+        }
+        .horizontal{
+            .icon {
+                margin:0 10px -4px 0;
+            }
+        }
+        .vertical{
+            span{
+                display: block;
+            }
+        }
+        .twice{
+            .ri{
+                display: inline-block;text-align: left;
+                .title{
+                    display: block;
+                }
+            }
+            .icon{
+                margin:0 10px 3px 0;
+            }
+        }
+        .once{
+            .ri{
+                display: inline-block;
             }
         }
     }

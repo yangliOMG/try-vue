@@ -1,38 +1,43 @@
 <template>
-    <ul id="goodList" class="tablist">
-        <li v-for="li in goodList" :key="li.id">
-            <a :href="'#/good?id='+li.id">
-                <span class="chanpinLi"><img src="../assets/onError360.jpg"></span>
-                <div class="f-12">
-                    <div class="text-overflow2" style="width:100%">{{li.name}}</div>
-                    <span class="c-red">￥<span>{{li.price.toFixed(2)}}</span></span>
-                </div>
-            </a>
-        </li>
-        <van-loading v-if="goodList.length === 0" color="black" class="loading" />
-    </ul>
+    <div>
+        <div class="retit">
+            <span class="pr-10 c-grey">——</span> 
+            <i class="fa fa-heart-o"></i> 商品推荐 
+            <span class="pl-10 c-grey">——</span>
+        </div>
+        <ul class="tablist">
+            <li v-for="li in goodList" :key="li.id">
+                <a :href="'#/good?id='+li.id">
+                    <span class="chanpinLi"><img src="../assets/onError360.jpg"></span>
+                    <div class="f-12">
+                        <div class="text-overflow2" style="width:100%">{{li.name}}</div>
+                        <span class="c-red">￥<span>{{li.price.toFixed(2)}}</span></span>
+                    </div>
+                </a>
+            </li>
+            <van-loading v-if="goodList.length === 0" color="black" class="loading" />
+        </ul>
+    </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import { Tab, Tabs, Loading } from 'vant'
-
-Vue.use(Tab).use(Tabs).use(Loading)
 
 export default {
-    props: {
-      goodList: {
-        type: Array
-      }
-    },
     data () {
         return {
+            goodList : [
+                {id:1,tabid:11,name:'【情人节特惠】18K金钻石字母套链',price:950},
+                {id:2,tabid:11,name:'【情人节特惠】18K金钻石几何情侣对戒',price:2950},
+                {id:3,tabid:22,name:'【春节特惠】S925纯银中国红生肖萌犬套装',price:1950},
+                {id:4,tabid:42,name:'18K金旋纹钻石耳圈',price:3950},
+            ]
         }
     }
 }
 </script>
 
 <style lang="less">
+.retit {border-top: 7px solid #eee;background: #eee;text-align: center;}
 .loading{margin: 60px auto;padding: 10px;border-radius: 3px;background-color: rgba(0, 0, 0, .5);}
 .tablist {
     padding: 3px 5px;
