@@ -54,7 +54,7 @@ export default {
             window.history.go(-1)
         },
         onClickRight() {
-            Toast('按钮')
+            window.location.href = '#/shopcart'
         },
         onClick() {
         },
