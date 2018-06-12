@@ -5,6 +5,8 @@ html, body, h1, h2, h3, h4, h5, h6, hr, p, iframe, dl, dt, dd, ul, ol, li, pre, 
 }
 .cl:after,.clearfix:after{content:"\20";display:block;height:0;clear:both;visibility:hidden}.cl,.clearfix{zoom:1}
 
+.b,.fwb{font-weight: bold;}
+.s{text-decoration: line-through;}
 .text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}.margin-c{margin: 0 auto;}.ver-c{display: flex;align-items: center;}
 .pos-r{position:relative}.pos-a{position:absolute}.pos-f{position:fixed}
 .l,.f-l{float:left!important;_display:inline}

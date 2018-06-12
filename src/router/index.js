@@ -6,6 +6,7 @@ import ArticlesList from '@/mall/articlesList'
 import My from '@/mall/my'
 import Good from '@/good/good'
 import Shopcart from '@/my/shopcart'
+import ComfirmOrder from '@/my/comfirmOrder'
 
 Vue.use(Router)
 
@@ -17,5 +18,6 @@ export default new Router({
     { path: '/my', name: 'My', component: My },
     { path: '/good', name: 'Good', component: Good },
     { path: '/shopcart', name: 'Shopcart', component: Shopcart },
+    { path: '/comfirmOrder', name: 'ComfirmOrder', component: ComfirmOrder },
   ]
 })
