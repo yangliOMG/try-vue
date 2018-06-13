@@ -9,6 +9,9 @@
         </van-nav-bar>
 
         <div class="pannel">
+
+            <AddrBar></AddrBar>
+
             <van-card v-for="li in list" :key="li.id"
                 :title="li.name"
                 :desc="li.info"  
@@ -24,6 +27,8 @@
                     </div>
                 </div>
             </van-card>
+
+            <Coupon @data="v=>zhekou=v"></Coupon>
 
         </div>
 
@@ -42,13 +47,14 @@
 import Vue from 'vue'
 import { NavBar,SubmitBar,Card,Button,Toast,Icon,Popup } from 'vant'
 
-import ScList from '../components/shopcartList'
-import Recommend from '../components/recommend.vue'
+import AddrBar from '../components/addrBar'
+import Coupon from '../components/coupon'
 
 Vue.use(NavBar).use(Toast).use(Button).use(Card).use(SubmitBar).use(Icon).use(Popup)
 export default {
     data () {
         return {
+            zhekou:0,
             show: false,
             list:[
                 {id:3,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国红生肖萌犬套装',price:'12.00',price2:'22.00',num:'2',imageURL: require('../assets/onError360.jpg'),},
@@ -62,7 +68,7 @@ export default {
             this.list.forEach(li=>{ 
                     t+=li.price*li.num 
             })
-            return t*100
+            return t*100-this.zhekou
         }
     },
     methods: {
@@ -70,22 +76,13 @@ export default {
             window.history.go(-1)
         },
         onSubmit() {
-            Toast("￥"+this.total/100)
+            Toast('￥'+this.total/100)
         },
-        onDel(val) {
-            const idx = this.list.findIndex(item =>item.id===val)
-            this.list.splice(idx,1)
-            const id = this.checkList.findIndex(item =>item===val)
-            this.checkList.splice(id,1)
-        },
-        getChecked(ids){
-            this.checkList = ids
-        }
     },
     watch:{
     },
     components: {
-        ScList,Recommend
+        AddrBar,Coupon
     }
 }
 </script>

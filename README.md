@@ -40,3 +40,5 @@ cnpm run dev
 },
 在style标签里加上lang=”less”
 ```
+# 局域网内无法访问
+* config/index.js , 修改host:“localhost”为 host:"0.0.0.0"

@@ -35,14 +35,14 @@
                 配饰
             </van-col>
         </van-row>
-        <van-cell-group class="user-group">
-            <van-cell icon="records" title="全部订单" is-link />
-        </van-cell-group>
-        <van-cell-group>
-            <van-cell icon="exchange" title="我的积分" is-link />
-            <van-cell icon="gold-coin" title="我的优惠券" is-link />
-            <van-cell icon="gift" title="我收到的礼物" is-link />
-        </van-cell-group>
+
+        <Biaoti :type='2' name='新品上市'></Biaoti>
+        <Good type='hang' :num='3' gap></Good>
+        <div class="mt-10"></div>
+
+        <Biaoti :type='2' name='人气单品'></Biaoti>
+        <Good type='small' :num='4' gap :message='["price","reward"]'></Good>
+        <Good type='zhou' :num='4' gap border :message='["price","reward","ljqg"]'></Good>
 
 
         <Tabbar> </Tabbar>
@@ -54,6 +54,9 @@ import Vue from 'vue'
 import { Search, Swipe, SwipeItem, Lazyload, Row, Col, Icon, Cell, CellGroup } from 'vant'
 
 import Tabbar from '../components/tabbar.vue'
+import Biaoti from '../pageCube/biaoti.vue'
+import Good from '../pageCube/good.vue'
+
 
 
 Vue.use(Search).use(Swipe).use(SwipeItem).use(Lazyload).use(Row).use(Col).use(Icon).use(Cell).use(CellGroup)
@@ -73,7 +76,7 @@ export default {
       },
     },
     components: {
-        Tabbar
+        Tabbar,Biaoti,Good
     }
 }
 </script>
