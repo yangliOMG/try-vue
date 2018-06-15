@@ -40,6 +40,10 @@
         <Good type='hang' :num='3' gap></Good>
         <div class="mt-10"></div>
 
+        <Biaoti :type='2' name='热卖排行'></Biaoti>
+        <Rank :height='[132,109,65,45,65,45]'></Rank>
+        <div class="mt-10"></div>
+
         <Biaoti :type='2' name='人气单品'></Biaoti>
         <Good type='small' :num='4' gap :message='["price","reward"]'></Good>
         <Good type='zhou' :num='4' gap border :message='["price","reward","ljqg"]'></Good>
@@ -56,6 +60,7 @@ import { Search, Swipe, SwipeItem, Lazyload, Row, Col, Icon, Cell, CellGroup } f
 import Tabbar from '../components/tabbar.vue'
 import Biaoti from '../pageCube/biaoti.vue'
 import Good from '../pageCube/good.vue'
+import Rank from '../pageCube/rank.vue'
 
 
 
@@ -76,7 +81,7 @@ export default {
       },
     },
     components: {
-        Tabbar,Biaoti,Good
+        Tabbar,Biaoti,Good,Rank
     }
 }
 </script>

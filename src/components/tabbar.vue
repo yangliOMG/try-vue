@@ -31,4 +31,5 @@ export default {
 </script>
 
 <style scoped>
+.van-tabbar{z-index:3}
 </style>

@@ -59,13 +59,6 @@ export default {
             return ['price','reward','sales','cares','ljqg'].map(i=>this.message.includes(i)? '':'hide')
         }
     },
-    data() {
-        return {
-            btarrow: {
-                background: 'url(' + require('../assets/h5index/arrow.png') + ') no-repeat 0/contain',
-            },
-        }
-    }
 }
 </script>
 
