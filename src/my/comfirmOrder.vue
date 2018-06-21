@@ -50,16 +50,14 @@ import { NavBar,SubmitBar,Card,Button,Toast,Icon,Popup } from 'vant'
 import AddrBar from '../components/addrBar'
 import Coupon from '../components/coupon'
 
+import {getQueryString} from '../util.js'
+
 Vue.use(NavBar).use(Toast).use(Button).use(Card).use(SubmitBar).use(Icon).use(Popup)
 export default {
     data () {
         return {
             zhekou:0,
             show: false,
-            list:[
-                {id:3,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国红生肖萌犬套装',price:'12.00',price2:'22.00',num:'2',imageURL: require('../assets/onError360.jpg'),},
-                {id:1,name:'【春节特惠】S925纯银中2',info:'S925纯银中2萌犬套装',price:'22.00',price2:'222.00',num:'23',imageURL: require('../assets/onError360.jpg'),},
-            ]
         }
     },
     computed:{
@@ -69,6 +67,27 @@ export default {
                     t+=li.price*li.num 
             })
             return t*100-this.zhekou
+        },
+        list(){
+            const shuju = [
+                {id:3,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国红生肖萌犬套装',price:'12.00',price2:'22.00',imageURL: require('../assets/onError360.jpg'),},
+                {id:2,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国2',price:'12.00',price2:'22.00',imageURL: require('../assets/onError360.jpg'),},
+                {id:1,name:'【春节特惠】S925纯银中2',info:'S925纯银中2萌犬套装',price:'22.00',price2:'222.00',imageURL: require('../assets/onError360.jpg'),},
+            ]
+            const mode = getQueryString('mode')
+            const id = getQueryString('id')
+            let li = []
+            if(mode==='shopcart'){
+                let ids = id.split(',')
+                ids.forEach(i=>{
+                    let num = this.$store.state.shopcart.goodList.find(li=>li.id===i*1).num
+                    li.push({...shuju.find(s=>s.id===i*1),num})
+                })
+            }else if(mode==='buynow'){
+                const num = getQueryString('num')
+                li.push({...shuju.find(s=>s.id===id*1),num})
+            }
+            return li
         }
     },
     methods: {

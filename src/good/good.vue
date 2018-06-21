@@ -7,12 +7,14 @@
             @click-left="onClickLeft"
             @click-right="onClickRight"
         >
-            <van-icon name="shopping-cart" slot="right" color="black" style="font-size:25px" />
+            <van-icon name="shopping-cart" slot="right" color="black" style="font-size:25px" >
+                <span v-if="shopcartCount>0" class="numCount" style="top:-4px;right:-7px;transform: scale(0.8);">{{shopcartCount}}</span>
+            </van-icon>
         </van-nav-bar>
 
         <van-tabs swipeable sticky @click="onClick" v-model="active">
             <van-tab :key='li.title' v-for="li in tabList" :title="li.title">
-                <Info v-if="li.component === 'Info'"/>
+                <Info v-if="li.component === 'Info'" ref="child1"/>
                 <Detail v-if="li.component === 'Detail'"/>
                 <Eval v-if="li.component === 'Eval'"/>
             </van-tab>
@@ -49,6 +51,11 @@ export default {
             ]
         }
     },
+    computed:{
+        shopcartCount(){
+            return this.$store.state.shopcart.goodList.length 
+        }
+    },
     methods: {
         onClickLeft() {
             window.history.go(-1)
@@ -57,6 +64,7 @@ export default {
             window.location.href = '#/shopcart'
         },
         onClick() {
+            this.$refs.child1[0].showPop()
         },
     },
     watch:{
@@ -119,4 +127,5 @@ export default {
     }
     .cell:last-child{background-image:none}
 }
+.numCount{position: absolute;background: red;color: white;border-radius: 18px;height: 18px;line-height: 16px;width: 18px;text-align: center;border: 1px solid white;font-size: 12px;}
 </style>

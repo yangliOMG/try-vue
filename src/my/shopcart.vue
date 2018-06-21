@@ -34,14 +34,20 @@ import Recommend from '../components/recommend.vue'
 Vue.use(NavBar).use(Toast).use(Button).use(Card).use(Checkbox).use(SubmitBar).use(Icon).use(Stepper)
 export default {
     data () {
+        let goodlist = this.$store.state.shopcart.goodList
+        const shuju = [
+            {id:3,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国红生肖萌犬套装',price:'12.00',price2:'22.00',num:'2',imageURL: require('../assets/onError360.jpg'),},
+            {id:2,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国2',price:'12.00',price2:'22.00',num:'2',imageURL: require('../assets/onError360.jpg'),},
+            {id:1,name:'【春节特惠】S925纯银中2',info:'S925纯银中2萌犬套装',price:'22.00',price2:'222.00',num:'23',imageURL: require('../assets/onError360.jpg'),},
+        ]
+        let li = []
+        goodlist.forEach(v=>{
+            li.push({...shuju.find(i=>i.id===v.id), num:v.num})
+        })
         return {
             checked:false,
-            // total:0,
             checkList:[],
-            list:[
-                {id:3,name:'【春节特惠】S925纯银中国红生肖萌犬套装',info:'S925纯银中国红生肖萌犬套装',price:'12.00',price2:'22.00',num:'2',imageURL: require('../assets/onError360.jpg'),},
-                {id:1,name:'【春节特惠】S925纯银中2',info:'S925纯银中2萌犬套装',price:'22.00',price2:'222.00',num:'23',imageURL: require('../assets/onError360.jpg'),},
-            ]
+            list:li
         }
     },
     computed:{
@@ -58,20 +64,22 @@ export default {
             },
             set(){
             }
-        }
+        },
     },
     methods: {
         onClickLeft() {
             window.history.go(-1)
         },
         onSubmit() {
-            window.location.href = '#/comfirmOrder'
+            window.location.href = '#/comfirmOrder?mode=shopcart&id='+this.checkList.join(',')
         },
         onDel(val) {
             const idx = this.list.findIndex(item =>item.id===val)
             this.list.splice(idx,1)
             const id = this.checkList.findIndex(item =>item===val)
             this.checkList.splice(id,1)
+
+            this.$store.dispatch('removeList',val)
         },
         getChecked(ids){
             this.checkList = ids

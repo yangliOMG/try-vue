@@ -120,10 +120,12 @@ export default {
 
         },
         onBuyClicked(data){
-            console.log(data)
+            window.location.href = `#/comfirmOrder?mode=buynow&id=${data.selectedSkuComb.id}&num=${data.selectedNum}`
         },
         onAddCartClicked(data){
-            console.log(data)
+            let d = {id:data.selectedSkuComb.id, num:data.selectedNum}
+            this.$store.dispatch('addList',d)
+            this.showPop()
         },
         showPop(){
             this.showBase = !this.showBase

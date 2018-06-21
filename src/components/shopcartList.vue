@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div slot="footer">
-                    <van-stepper disable-input v-model="li.num" />
+                    <van-stepper disable-input v-model="li.num" @change="val=>change(val,li.id)" />
                     <van-button size="mini" @click="onDel(li.id)"><van-icon name="delete" /></van-button>
                 </div>
             </van-card>
@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         onDel(id) {
-            Dialog.confirm({message: '弹窗内容'
+            Dialog.confirm({message: '确认删除'
             }).then(() => {
                 this.$listeners.del(id)
                 this.$emit('data', this.boxIds)
@@ -72,6 +72,9 @@ export default {
         },
         checkClick(){
             this.listids = this.list.map(i=>i.id)
+        },
+        change(num,id){
+            this.$store.dispatch('changeNum',{id,num})
         }
     }
 }
