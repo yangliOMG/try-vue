@@ -71,6 +71,9 @@ export default {
             window.history.go(-1)
         },
         onSubmit() {
+            if(this.checkList.length===0){
+                return Toast('请先勾选')
+            }
             window.location.href = '#/comfirmOrder?mode=shopcart&id='+this.checkList.join(',')
         },
         onDel(val) {

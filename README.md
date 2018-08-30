@@ -42,3 +42,27 @@ cnpm run dev
 ```
 # 局域网内无法访问
 * config/index.js , 修改host:“localhost”为 host:"0.0.0.0"
+
+# 代码分割
+* 应用程序的代码分割或惰性加载，有助于减少浏览器在初始渲染中下载的资源体积，可以极大地改善大体积 bundle 的可交互时间(TTI - time-to-interactive)
+https://ssr.vuejs.org/zh/guide/routing.html#代码分割
+```
+// 这里进行修改……
+import Foo from './Foo.vue'
+
+// 改为这样：
+const Foo = () => import('./Foo.vue')
+```
+# 代码发布
+* ssh root@xx.xx.xx.xx      gitbash可以连接到远程ip
+* 域名与服务器的备案信息得一致
+
+# v-model的意义
+```
+<input :value="content" />      //单向=>值由content决定
+<input v-model="content" />     //双向数据绑定=>input可以改变content的值
+。。。
+data:{
+    content:"xxxx"
+}
+```
